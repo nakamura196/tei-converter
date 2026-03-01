@@ -6,7 +6,7 @@ DOCX から TEI/XML への変換を行う、シンプルなブラウザベース
 
 ## Demo / デモ
 
-**https://nakamura196.github.io/tei-converter/**
+**https://tei-converter.pages.dev/**
 
 ## Features / 機能
 
@@ -21,12 +21,12 @@ DOCX から TEI/XML への変換を行う、シンプルなブラウザベース
 
 ## Usage / 使い方
 
-1. Open `index.html` in a browser, or visit the [demo site](https://nakamura196.github.io/tei-converter/).
+1. Open `index.html` in a browser, or visit the [demo site](https://tei-converter.pages.dev/).
 2. Drop a `.docx` file onto the page (or click to select).
 3. Click **Convert** / **変換する**.
 4. View, copy, or download the resulting TEI/XML.
 
-ブラウザで `index.html` を開くか、[デモサイト](https://nakamura196.github.io/tei-converter/)にアクセスし、`.docx` ファイルをドロップして「変換する」をクリックしてください。
+ブラウザで `index.html` を開くか、[デモサイト](https://tei-converter.pages.dev/)にアクセスし、`.docx` ファイルをドロップして「変換する」をクリックしてください。
 
 ## How It Works / 仕組み
 
