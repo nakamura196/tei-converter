@@ -1,0 +1,239 @@
+/* ======== i18n ======== */
+const I18N = {
+  ja: {
+    dropMain:    '.docx ファイルをドラッグ&ドロップ',
+    dropSub:     'またはクリックして選択',
+    convert:     '変換する',
+    sample:      'サンプル .docx で試す',
+    sampleDl:    'サンプル .docx をダウンロード',
+    clear:       'クリア',
+    sending:     'TEI Garage に送信中…',
+    resultTitle: '変換結果 (TEI/XML)',
+    copy:        'コピー',
+    copied:      'コピー済み',
+    download:    'ダウンロード',
+    footer:      '変換処理は <a href="https://teigarage.tei-c.org/" target="_blank" rel="noopener">TEI Garage</a> のサーバ上で実行されます。',
+    errDocx:     '.docx ファイルを選択してください。',
+    errServer:   'サーバエラー',
+    errConvert:  '変換に失敗しました。',
+    errCopy:     'クリップボードへのコピーに失敗しました。',
+    tabXml:      'XML',
+    tabPreview:  'プレビュー',
+    modeConvert: 'DOCX → TEI 変換',
+    modeViewer:  'TEI/XML ビューワ',
+    xmlDropMain: 'TEI/XML ファイルをドラッグ&ドロップ',
+    xmlDropSub:  'またはクリックして選択',
+    viewerTitle: 'TEI/XML ビューワ',
+    landingSubtitle: 'TEI/XML のための変換・可視化ツール',
+    convertDesc: '.docx ファイルを TEI Garage API で TEI/XML に変換します。',
+    viewerDesc:  'TEI/XML ファイルをアップロードして構文ハイライトとプレビューで確認できます。',
+    backToTop:   '← トップへ',
+    viewerSubtitle: 'TEI/XML ファイルを可視化して確認',
+    landingFooter: 'Powered by <a href="https://teigarage.tei-c.org/" target="_blank" rel="noopener">TEI Garage</a> &amp; <a href="https://github.com/TEIC/CETEIcean" target="_blank" rel="noopener">CETEIcean</a>',
+  },
+  en: {
+    dropMain:    'Drag & drop a .docx file',
+    dropSub:     'or click to select',
+    convert:     'Convert',
+    sample:      'Try with sample .docx',
+    sampleDl:    'Download sample .docx',
+    clear:       'Clear',
+    sending:     'Sending to TEI Garage…',
+    resultTitle: 'Result (TEI/XML)',
+    copy:        'Copy',
+    copied:      'Copied',
+    download:    'Download',
+    footer:      'Conversion is processed on the <a href="https://teigarage.tei-c.org/" target="_blank" rel="noopener">TEI Garage</a> server.',
+    errDocx:     'Please select a .docx file.',
+    errServer:   'Server error',
+    errConvert:  'Conversion failed.',
+    errCopy:     'Failed to copy to clipboard.',
+    tabXml:      'XML',
+    tabPreview:  'Preview',
+    modeConvert: 'DOCX → TEI Convert',
+    modeViewer:  'TEI/XML Viewer',
+    xmlDropMain: 'Drag & drop a TEI/XML file',
+    xmlDropSub:  'or click to select',
+    viewerTitle: 'TEI/XML Viewer',
+    landingSubtitle: 'Conversion & visualization tools for TEI/XML',
+    convertDesc: 'Convert .docx files to TEI/XML using the TEI Garage API.',
+    viewerDesc:  'Upload TEI/XML files to view with syntax highlighting and preview.',
+    backToTop:   '← Back',
+    viewerSubtitle: 'Visualize and verify TEI/XML files',
+    landingFooter: 'Powered by <a href="https://teigarage.tei-c.org/" target="_blank" rel="noopener">TEI Garage</a> &amp; <a href="https://github.com/TEIC/CETEIcean" target="_blank" rel="noopener">CETEIcean</a>',
+  }
+};
+
+var lang = 'ja';
+
+function t(key) { return I18N[lang][key] || key; }
+
+function applyLang() {
+  document.documentElement.lang = lang;
+  document.getElementById('langBtn').textContent = lang === 'ja' ? 'EN' : 'JA';
+  document.querySelectorAll('[data-i18n]').forEach(el => {
+    const key = el.dataset.i18n;
+    if (I18N[lang][key] != null) {
+      if (el.querySelector('a') || I18N[lang][key].includes('<a ')) {
+        el.innerHTML = I18N[lang][key];
+      } else {
+        el.textContent = I18N[lang][key];
+      }
+    }
+  });
+}
+
+document.getElementById('langBtn').addEventListener('click', () => {
+  lang = lang === 'ja' ? 'en' : 'ja';
+  applyLang();
+});
+
+/* ======== XML pretty-print ======== */
+function formatXml(xml) {
+  const parser = new DOMParser();
+  const doc = parser.parseFromString(xml, 'application/xml');
+  if (doc.querySelector('parsererror')) return xml;
+
+  const indent = '  ';
+  const lines = [];
+  const declMatch = xml.match(/^(<\?xml[^?]*\?>)/);
+  if (declMatch) lines.push(declMatch[1]);
+
+  function serialize(node, level) {
+    const pad = indent.repeat(level);
+
+    if (node.nodeType === Node.TEXT_NODE) {
+      if (node.textContent.trim()) lines.push(pad + node.textContent.trim());
+      return;
+    }
+    if (node.nodeType === Node.COMMENT_NODE) {
+      lines.push(pad + '<!--' + node.textContent + '-->');
+      return;
+    }
+    if (node.nodeType === Node.PROCESSING_INSTRUCTION_NODE) {
+      lines.push(pad + '<?' + node.target + ' ' + node.data + '?>');
+      return;
+    }
+    if (node.nodeType !== Node.ELEMENT_NODE) return;
+
+    let tag = '<' + node.tagName;
+    for (const attr of node.attributes) {
+      tag += ' ' + attr.name + '="' + attr.value.replace(/&/g,'&amp;').replace(/"/g,'&quot;') + '"';
+    }
+
+    const children = node.childNodes;
+    if (children.length === 0) { lines.push(pad + tag + '/>'); return; }
+
+    if (children.length === 1 && children[0].nodeType === Node.TEXT_NODE) {
+      const text = children[0].textContent;
+      lines.push(pad + tag + '>' + text.replace(/&/g,'&amp;').replace(/</g,'&lt;') + '</' + node.tagName + '>');
+      return;
+    }
+
+    let hasElement = false, hasText = false;
+    for (const c of children) {
+      if (c.nodeType === Node.ELEMENT_NODE) hasElement = true;
+      if (c.nodeType === Node.TEXT_NODE && c.textContent.trim()) hasText = true;
+    }
+
+    if (hasElement && hasText) {
+      const ser = new XMLSerializer();
+      let inner = '';
+      for (const c of children) inner += ser.serializeToString(c);
+      lines.push(pad + tag + '>' + inner + '</' + node.tagName + '>');
+      return;
+    }
+
+    lines.push(pad + tag + '>');
+    for (const child of children) serialize(child, level + 1);
+    lines.push(pad + '</' + node.tagName + '>');
+  }
+
+  serialize(doc.documentElement, 0);
+  return lines.join('\n');
+}
+
+/* ======== XML syntax highlight (single-pass tokenizer) ======== */
+function highlightXml(xml) {
+  const out = [];
+  let i = 0;
+  while (i < xml.length) {
+    if (xml[i] === '<') {
+      let end;
+      if (xml.startsWith('<!--', i)) {
+        end = xml.indexOf('-->', i); end = end === -1 ? xml.length : end + 3;
+        out.push('<span class="comment">' + esc(xml.slice(i, end)) + '</span>');
+      } else if (xml.startsWith('<?', i)) {
+        end = xml.indexOf('?>', i); end = end === -1 ? xml.length : end + 2;
+        out.push('<span class="decl">' + esc(xml.slice(i, end)) + '</span>');
+      } else {
+        end = xml.indexOf('>', i); end = end === -1 ? xml.length : end + 1;
+        out.push(highlightElement(xml.slice(i, end)));
+      }
+      i = end;
+    } else {
+      let next = xml.indexOf('<', i);
+      if (next === -1) next = xml.length;
+      out.push(esc(xml.slice(i, next)));
+      i = next;
+    }
+  }
+  return out.join('');
+}
+
+function esc(s) {
+  return s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+}
+
+function highlightElement(tag) {
+  const re = /^(<\/?)(\s*)([\w:\-]+)([\s\S]*?)(\/?>)$/;
+  const m = tag.match(re);
+  if (!m) return esc(tag);
+
+  let r = esc(m[1]) + m[2] + '<span class="tag">' + esc(m[3]) + '</span>';
+  if (m[4].trim()) {
+    r += m[4].replace(/([\w:\-]+)\s*=\s*"([^"]*)"/g, (_, n, v) =>
+      '<span class="attr-name">' + esc(n) + '</span>=<span class="attr-val">"' + esc(v) + '"</span>'
+    );
+  }
+  return r + esc(m[5]);
+}
+
+/* ======== Error helpers ======== */
+function showError(msg) {
+  const errorDiv = document.getElementById('error');
+  errorDiv.textContent = msg;
+  errorDiv.classList.add('active');
+}
+
+function hideError() {
+  const errorDiv = document.getElementById('error');
+  errorDiv.classList.remove('active');
+}
+
+/* ======== Tab switching ======== */
+document.querySelectorAll('.tab-btn').forEach(btn => {
+  btn.addEventListener('click', () => {
+    document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+    document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+    btn.classList.add('active');
+    document.getElementById(btn.dataset.tab).classList.add('active');
+  });
+});
+
+/* ======== TEI Preview with CETEIcean ======== */
+function renderTeiPreview(xmlString) {
+  const teiPreview = document.getElementById('teiPreview');
+  teiPreview.innerHTML = '';
+  const ct = new CETEI();
+  ct.makeHTML5(xmlString, function(data) {
+    teiPreview.appendChild(data);
+  });
+}
+
+/* ======== Utility ======== */
+function formatSize(bytes) {
+  if (bytes < 1024) return bytes + ' B';
+  if (bytes < 1024 * 1024) return (bytes / 1024).toFixed(1) + ' KB';
+  return (bytes / (1024 * 1024)).toFixed(1) + ' MB';
+}

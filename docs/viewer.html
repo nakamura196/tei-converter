@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>TEI/XML Viewer</title>
+<link rel="stylesheet" href="style.css">
+<script src="https://cdn.jsdelivr.net/npm/CETEIcean@1.9.5/dist/CETEI.js"></script>
+</head>
+<body>
+
+<header class="site-header">
+  <a href="index.html" class="back-link" data-i18n="backToTop">← トップへ</a>
+  <h1 data-i18n="viewerTitle">TEI/XML ビューワ</h1>
+  <button class="lang-btn" id="langBtn">EN</button>
+</header>
+
+<p class="subtitle" data-i18n="viewerSubtitle">TEI/XML ファイルを可視化して確認</p>
+
+<div class="main-content">
+
+  <div class="dropzone" id="xmlDropzone">
+    <div class="dropzone-icon">📝</div>
+    <div class="dropzone-text">
+      <strong data-i18n="xmlDropMain">TEI/XML ファイルをドラッグ&ドロップ</strong><br>
+      <span data-i18n="xmlDropSub">またはクリックして選択</span>
+    </div>
+    <div class="file-name" id="xmlFileName"></div>
+    <input type="file" class="file-input" id="xmlFileInput" accept=".xml,.tei,text/xml,application/xml">
+  </div>
+
+  <div class="error" id="error"></div>
+
+  <div class="result" id="result">
+    <div class="result-header">
+      <h2 data-i18n="viewerTitle">TEI/XML ビューワ</h2>
+      <div class="result-actions">
+        <button class="btn-secondary" id="copyBtn" data-i18n="copy">コピー</button>
+        <button class="btn-primary" id="downloadBtn" data-i18n="download">ダウンロード</button>
+      </div>
+    </div>
+    <div class="tabs">
+      <button class="tab-btn active" data-tab="panelXml" data-i18n="tabXml">XML</button>
+      <button class="tab-btn" data-tab="panelPreview" data-i18n="tabPreview">プレビュー</button>
+    </div>
+    <div class="tab-panel active" id="panelXml">
+      <div class="xml-preview" id="xmlPreview"></div>
+    </div>
+    <div class="tab-panel" id="panelPreview">
+      <div class="tei-preview" id="teiPreview"></div>
+    </div>
+  </div>
+
+</div>
+
+<footer class="site-footer">
+  Powered by <a href="https://github.com/TEIC/CETEIcean" target="_blank" rel="noopener">CETEIcean</a>
+</footer>
+
+<script src="common.js"></script>
+<script src="viewer.js"></script>
+</body>
+</html>

@@ -4,7 +4,11 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project Overview
 
-DOCX → TEI/XML converter: a static, no-build-step browser app that sends `.docx` files to the [TEI Garage](https://teigarage.tei-c.org/) REST API and displays the resulting TEI/XML. Deployed to Cloudflare Pages at https://tei-converter.pages.dev/.
+TEI Tools: a static, no-build-step browser app with two features:
+1. **DOCX → TEI Converter** — sends `.docx` files to the [TEI Garage](https://teigarage.tei-c.org/) REST API and displays the resulting TEI/XML
+2. **TEI/XML Viewer** — loads user-edited TEI/XML files for visualization with syntax highlighting and CETEIcean preview
+
+Deployed to Cloudflare Pages at https://tei-converter.pages.dev/.
 
 ## Development
 
@@ -20,19 +24,29 @@ There are no tests or linting configured.
 
 ## Architecture
 
-All application code lives in `docs/` — three files:
+All application code lives in `docs/` — multi-page structure:
 
-- **`index.html`** — page structure with `data-i18n` attributes for bilingual (JA/EN) support
-- **`app.js`** — all logic: i18n, file upload/drag-drop, TEI Garage API call, XML pretty-printing with syntax highlighting, CETEIcean-powered TEI preview, tab switching, copy/download
-- **`style.css`** — UI styles plus extensive CSS for rendering CETEIcean custom elements (`tei-head`, `tei-p`, `tei-note`, etc.)
+### HTML pages
+- **`index.html`** — landing page with links to converter and viewer
+- **`convert.html`** — DOCX → TEI conversion page
+- **`viewer.html`** — TEI/XML viewer page
+
+### JavaScript
+- **`common.js`** — shared code: i18n (`I18N` object, `applyLang()`), XML formatting/highlighting, CETEIcean preview, tab switching, error helpers
+- **`convert.js`** — converter-specific logic: TEI Garage API call, file upload, sample file handling
+- **`viewer.js`** — viewer-specific logic: XML file upload and display
+
+### Other
+- **`style.css`** — all styles including responsive design, CETEIcean element rendering
 - **`sample.docx`** — bundled sample file for quick testing
 
-External dependency: [CETEIcean](https://github.com/TEIC/CETEIcean) loaded from CDN in `index.html`.
+External dependency: [CETEIcean](https://github.com/TEIC/CETEIcean) loaded from CDN in convert.html and viewer.html.
 
 ## Key Patterns
 
-- **i18n**: `I18N` object at the top of `app.js` holds all JA/EN strings. HTML elements use `data-i18n="key"` attributes. `applyLang()` updates the DOM.
-- **API endpoint**: The TEI Garage conversion URL is hardcoded in `app.js` as the `API` constant.
-- **XML display**: Custom syntax highlighting via regex-based `highlightXml()` (not a library).
+- **i18n**: `I18N` object in `common.js` holds all JA/EN strings. HTML elements use `data-i18n="key"` attributes. `applyLang()` updates the DOM.
+- **API endpoint**: The TEI Garage conversion URL is hardcoded in `convert.js` as the `API` constant.
+- **XML display**: Custom syntax highlighting via regex-based `highlightXml()` in `common.js` (not a library).
 - **TEI preview**: CETEIcean transforms TEI XML into custom HTML elements; CSS in `style.css` styles them (`.tei-preview tei-*` selectors).
 - **Note popups**: `tei-note` elements show content on hover via pure CSS (`:hover > *`).
+- **Shared header/footer**: All pages use `.site-header` / `.site-footer` with sticky header. Sub-pages have a `← トップへ` back link.

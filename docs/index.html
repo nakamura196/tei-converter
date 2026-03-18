@@ -3,72 +3,40 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>DOCX → TEI/XML Converter</title>
+<title>TEI Tools</title>
 <link rel="stylesheet" href="style.css">
-<script src="https://cdn.jsdelivr.net/npm/CETEIcean@1.9.5/dist/CETEI.js"></script>
 </head>
 <body>
 
-<div class="header">
-  <h1>DOCX → TEI/XML Converter</h1>
+<header class="site-header">
+  <h1>TEI Tools</h1>
   <button class="lang-btn" id="langBtn">EN</button>
-</div>
-<p class="subtitle">Powered by <a href="https://teigarage.tei-c.org/" target="_blank" rel="noopener">TEI Garage</a> API</p>
+</header>
 
-<div class="container">
+<p class="subtitle" data-i18n="landingSubtitle">TEI/XML のための変換・可視化ツール</p>
 
-  <div class="dropzone" id="dropzone">
-    <div class="dropzone-icon">📄</div>
-    <div class="dropzone-text">
-      <strong data-i18n="dropMain">.docx ファイルをドラッグ&ドロップ</strong><br>
-      <span data-i18n="dropSub">またはクリックして選択</span>
-    </div>
-    <div class="file-name" id="fileName"></div>
-    <input type="file" class="file-input" id="fileInput" accept=".docx,application/vnd.openxmlformats-officedocument.wordprocessingml.document">
+<div class="main-content">
+  <div class="landing-cards">
+
+    <a class="landing-card" href="convert.html">
+      <div class="landing-card-icon">📄</div>
+      <h2 data-i18n="modeConvert">DOCX → TEI 変換</h2>
+      <p data-i18n="convertDesc">.docx ファイルを TEI Garage API で TEI/XML に変換します。</p>
+    </a>
+
+    <a class="landing-card" href="viewer.html">
+      <div class="landing-card-icon">📝</div>
+      <h2 data-i18n="modeViewer">TEI/XML ビューワ</h2>
+      <p data-i18n="viewerDesc">TEI/XML ファイルをアップロードして構文ハイライトとプレビューで確認できます。</p>
+    </a>
+
   </div>
-
-  <div class="actions">
-    <button class="btn-primary" id="convertBtn" disabled data-i18n="convert">変換する</button>
-    <button class="btn-secondary" id="clearBtn" style="display:none" data-i18n="clear">クリア</button>
-  </div>
-  <div style="display:flex;justify-content:center;gap:1.5rem">
-    <button class="sample-link" id="sampleBtn" data-i18n="sample">サンプル .docx で試す</button>
-    <button class="sample-link" id="sampleDlBtn" data-i18n="sampleDl">サンプル .docx をダウンロード</button>
-  </div>
-
-  <div class="progress" id="progress">
-    <div class="spinner"></div>
-    <div class="progress-text" id="progressText" data-i18n="sending">TEI Garage に送信中…</div>
-  </div>
-
-  <div class="error" id="error"></div>
-
-  <div class="result" id="result">
-    <div class="result-header">
-      <h2 data-i18n="resultTitle">変換結果 (TEI/XML)</h2>
-      <div class="result-actions">
-        <button class="btn-secondary" id="copyBtn" data-i18n="copy">コピー</button>
-        <button class="btn-primary" id="downloadBtn" data-i18n="download">ダウンロード</button>
-      </div>
-    </div>
-    <div class="tabs">
-      <button class="tab-btn active" data-tab="panelXml" data-i18n="tabXml">XML</button>
-      <button class="tab-btn" data-tab="panelPreview" data-i18n="tabPreview">プレビュー</button>
-    </div>
-    <div class="tab-panel active" id="panelXml">
-      <div class="xml-preview" id="xmlPreview"></div>
-    </div>
-    <div class="tab-panel" id="panelPreview">
-      <div class="tei-preview" id="teiPreview"></div>
-    </div>
-  </div>
-
 </div>
 
-<footer data-i18n="footer">
-  変換処理は <a href="https://teigarage.tei-c.org/" target="_blank" rel="noopener">TEI Garage</a> のサーバ上で実行されます。
+<footer class="site-footer" data-i18n="landingFooter">
+  Powered by <a href="https://teigarage.tei-c.org/" target="_blank" rel="noopener">TEI Garage</a> &amp; <a href="https://github.com/TEIC/CETEIcean" target="_blank" rel="noopener">CETEIcean</a>
 </footer>
 
-<script src="app.js"></script>
+<script src="common.js"></script>
 </body>
 </html>
