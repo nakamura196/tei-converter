@@ -2,3 +2,7 @@ node_modules/
 package.json
 package-lock.json
 .vscode/
+.DS_Store
+.env
+!.env.example
+spec/

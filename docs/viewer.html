@@ -4,18 +4,34 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>TEI/XML Viewer</title>
+<link rel="icon" href="favicon.ico">
 <link rel="stylesheet" href="style.css">
 <script src="https://cdn.jsdelivr.net/npm/CETEIcean@1.9.5/dist/CETEI.js"></script>
 </head>
 <body>
 
+<a href="https://github.com/toyo-bunko/tei-tools" target="_blank" rel="noopener" class="github-link" aria-label="View on GitHub">
+  <svg width="20" height="20" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true">
+    <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0016 8c0-4.42-3.58-8-8-8z"/>
+  </svg>
+</a>
+
 <header class="site-header">
-  <a href="index.html" class="back-link" data-i18n="backToTop">← トップへ</a>
-  <h1 data-i18n="viewerTitle">TEI/XML ビューワ</h1>
-  <button class="lang-btn" id="langBtn">EN</button>
+  <a href="index.html" class="site-title">TEI Tools</a>
+  <nav class="site-nav">
+    <a href="convert.html" data-i18n="modeConvert">DOCX → TEI 変換</a>
+    <a href="viewer.html" data-i18n="modeViewer">TEI/XML ビューワ</a>
+    <button class="theme-btn" id="themeBtn">Auto</button>
+    <button class="lang-btn" id="langBtn">EN</button>
+  </nav>
 </header>
 
+<h1 class="page-title" data-i18n="modeViewer">TEI/XML ビューワ</h1>
 <p class="subtitle" data-i18n="viewerSubtitle">TEI/XML ファイルを可視化して確認</p>
+
+<div class="note-box" data-i18n="viewerNote">
+  このビューワは、<a href="https://teigarage.tei-c.org/" target="_blank" rel="noopener">TEI Garage</a> によって生成される TEI/XML を想定しています。TEI/XML のタグ体系はプロジェクトごとに異なるため、すべての TEI/XML ファイルの表示に対応しているわけではありません。
+</div>
 
 <div class="main-content">
 
@@ -27,6 +43,10 @@
     </div>
     <div class="file-name" id="xmlFileName"></div>
     <input type="file" class="file-input" id="xmlFileInput" accept=".xml,.tei,text/xml,application/xml">
+  </div>
+
+  <div style="display:flex;justify-content:center;gap:1.5rem">
+    <button class="sample-link" id="sampleXmlBtn" data-i18n="sampleXml">サンプル TEI/XML で試す</button>
   </div>
 
   <div class="error" id="error"></div>
@@ -53,8 +73,8 @@
 
 </div>
 
-<footer class="site-footer">
-  Powered by <a href="https://github.com/TEIC/CETEIcean" target="_blank" rel="noopener">CETEIcean</a>
+<footer class="site-footer" data-i18n="siteFooter">
+  Copyright : Toyo Bunko 2025
 </footer>
 
 <script src="common.js"></script>

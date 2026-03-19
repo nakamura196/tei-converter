@@ -47,6 +47,17 @@ function loadXmlFile(file) {
   reader.readAsText(file);
 }
 
+/* ======== Sample XML ======== */
+document.getElementById('sampleXmlBtn').addEventListener('click', () => {
+  fetch('sample.xml')
+    .then(res => res.text())
+    .then(text => {
+      const file = new File([text], 'sample.xml', { type: 'application/xml' });
+      loadXmlFile(file);
+    })
+    .catch(() => showError(t('errConvert')));
+});
+
 /* ======== Copy / Download ======== */
 copyBtn.addEventListener('click', async () => {
   try {
