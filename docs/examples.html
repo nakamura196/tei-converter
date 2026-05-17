@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>XSL ギャラリー — TEI Tools</title>
+<meta name="description" content="プロジェクト別の TEI/XML 変換サンプルと、再利用できる XSL スタイルシート集。OCR 結果のフォルダや公開済み XML をアップロードして可視化できます。">
+<meta name="keywords" content="TEI, XML, XSLT, XSL, OCR, 翻刻, 可視化, デジタルヒューマニティーズ">
+<link rel="canonical" href="https://toyo-bunko.github.io/tei-tools/examples.html">
+<!-- OGP -->
+<meta property="og:title" content="XSL ギャラリー — TEI Tools">
+<meta property="og:description" content="プロジェクト別の TEI/XML 変換サンプルと、再利用できる XSL スタイルシート集。">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://toyo-bunko.github.io/tei-tools/examples.html">
+<meta property="og:site_name" content="TEI Tools">
+<meta property="og:locale" content="ja_JP">
+<meta property="og:image" content="https://toyo-bunko.github.io/tei-tools/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<!-- Twitter Card -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://toyo-bunko.github.io/tei-tools/og-image.png">
+<meta name="twitter:title" content="XSL ギャラリー — TEI Tools">
+<meta name="twitter:description" content="プロジェクト別の TEI/XML 変換サンプルと、再利用できる XSL スタイルシート集。">
+<link rel="icon" href="favicon.ico">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!-- GitHub link · site header · footer: injected by js/shared/common.js → renderChrome() -->
+
+<h1 class="page-title" data-i18n="modeExamples">XSL ギャラリー</h1>
+<p class="subtitle" data-i18n="examplesSubtitle">プロジェクト別の TEI 変換サンプルと、再利用できる XSL スタイルシート集</p>
+
+<div class="note-box" data-i18n="examplesNote">
+  各 XSL は XSLT 1.0 で書かれた単体で完結するスタイルシートです。「XSL をダウンロード」から取得して、ご自身のプロジェクトでそのまま利用できます。サンプルのほか、お手元の TEI/XML ファイル・OCR 結果フォルダ・公開済み XML（?url= パラメータ）も読み込めます。
+</div>
+
+<div class="main-content">
+
+  <h2 class="section-title" data-i18n="exCatalog">XSL カタログ</h2>
+  <div class="xsl-catalog" id="xslCatalog"></div>
+
+  <h2 class="section-title" data-i18n="exYourData">自分のデータで試す</h2>
+
+  <div class="dropzone" id="xmlDropzone">
+    <div class="dropzone-icon">📄</div>
+    <div class="dropzone-text">
+      <strong data-i18n="exDropMain">TEI/XML ファイルまたはフォルダをドラッグ&ドロップ</strong><br>
+      <span data-i18n="exDropSub">またはクリックして TEI/XML ファイルを選択</span>
+    </div>
+    <div class="file-name" id="xmlFileName"></div>
+    <input type="file" class="file-input" id="xmlFileInput" accept=".xml,.tei,text/xml,application/xml">
+  </div>
+
+  <div class="input-extra">
+    <button class="btn-secondary" id="folderBtn" data-i18n="exFolderBtn">📁 OCR フォルダを選択</button>
+    <input type="file" class="file-input" id="folderInput" webkitdirectory directory multiple>
+    <span class="input-hint" data-i18n="exFolderHint">OCR 結果フォルダ（tei.xml と images/）を丸ごと読み込みます</span>
+  </div>
+
+  <div class="error" id="error"></div>
+
+  <div class="result" id="result">
+    <div class="result-header">
+      <h2 data-i18n="exResultTitle">変換結果</h2>
+      <div class="result-actions">
+        <span class="applied-xsl" id="appliedXsl"></span>
+        <a class="btn-secondary" id="openTabBtn" target="_blank" rel="noopener" data-i18n="exOpenTab">新しいタブで開く</a>
+      </div>
+    </div>
+    <iframe class="render-frame" id="renderFrame" title="rendered output" sandbox="allow-same-origin allow-scripts allow-popups"></iframe>
+  </div>
+
+</div>
+
+<script src="js/shared/common.js"></script>
+<script src="js/pages/examples.js"></script>
+</body>
+</html>

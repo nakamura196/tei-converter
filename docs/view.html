@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>TEI 表示 — TEI Tools</title>
+<!--
+  Full-screen renderer. Reads ?url= (a TEI/XML URL) and optional ?xsl=
+  (a catalog id or an XSL URL), transforms in the browser, and replaces this
+  whole document with the result. See view.js.
+-->
+<style>
+  body { font-family: -apple-system, BlinkMacSystemFont, "Helvetica Neue", sans-serif;
+         margin: 0; color: #1a1a1a; background: #fafafa; }
+  .status { padding: 2rem; line-height: 1.8; font-size: .95rem; color: #555;
+            max-width: 44rem; }
+  .status.error { color: #b00; }
+  .status a { color: #0071e3; }
+</style>
+</head>
+<body>
+<div id="status" class="status">読み込み中… / Loading…</div>
+<script src="js/pages/view.js"></script>
+</body>
+</html>

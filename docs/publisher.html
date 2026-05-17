@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>TEI ギャラリー — TEI Tools</title>
+<meta name="description" content="XML 文書と XSL スタイルシートを選び、組み合わせて全画面の公開ビューを開くランチャー。">
+<meta name="keywords" content="TEI, XML, XSLT, XSL, ギャラリー, 公開, デジタルヒューマニティーズ">
+<link rel="canonical" href="https://toyo-bunko.github.io/tei-tools/publisher.html">
+<!-- OGP -->
+<meta property="og:title" content="TEI ギャラリー — TEI Tools">
+<meta property="og:description" content="XML 文書と XSL スタイルシートを選び、組み合わせて全画面の公開ビューを開きます。">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://toyo-bunko.github.io/tei-tools/publisher.html">
+<meta property="og:site_name" content="TEI Tools">
+<meta property="og:locale" content="ja_JP">
+<meta property="og:image" content="https://toyo-bunko.github.io/tei-tools/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<!-- Twitter Card -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://toyo-bunko.github.io/tei-tools/og-image.png">
+<meta name="twitter:title" content="TEI ギャラリー — TEI Tools">
+<meta name="twitter:description" content="XML 文書と XSL スタイルシートを選び、組み合わせて全画面の公開ビューを開きます。">
+<link rel="icon" href="favicon.ico">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!-- GitHub link · site header · footer: injected by js/shared/common.js → renderChrome() -->
+
+<h1 class="page-title" data-i18n="modePublisher">TEI ギャラリー</h1>
+<p class="subtitle" data-i18n="publisherSubtitle">XML を選び、XSL を選んで、全画面表示で公開ビューを開く</p>
+
+<div class="main-content">
+
+  <div class="publisher">
+
+    <!-- Step 1: choose an XML document -->
+    <section class="pub-pane" data-step="xml">
+      <div class="pub-pane-head">
+        <span class="pub-pane-num">1</span>
+        <div class="pub-pane-headtext">
+          <h2 class="pub-pane-title"><span data-i18n="pubStep1">XML 文書を選ぶ</span> <span class="pane-count" id="xmlCount"></span></h2>
+          <p class="pub-pane-hint" data-i18n="pubStep1Hint">表示したい資料を 1 つ選びます</p>
+        </div>
+      </div>
+      <ul class="pub-list" id="xmlList"></ul>
+      <details class="pub-add">
+        <summary data-i18n="pubAddTitle">自分の XML を追加する</summary>
+        <div class="pub-add-body">
+          <div class="pub-add-row">
+            <input type="url" id="xmlUrlInput" placeholder="https://…/tei.xml">
+            <button class="btn-secondary" id="xmlUrlBtn" data-i18n="pubAdd">URL を追加</button>
+          </div>
+          <button class="btn-secondary" id="xmlFileBtn" data-i18n="pubAddFile">ファイルを追加</button>
+          <input type="file" class="file-input" id="xmlFileInput" accept=".xml,.tei,text/xml,application/xml">
+        </div>
+      </details>
+    </section>
+
+    <!-- Step 2: choose an XSL stylesheet -->
+    <section class="pub-pane" data-step="xsl">
+      <div class="pub-pane-head">
+        <span class="pub-pane-num">2</span>
+        <div class="pub-pane-headtext">
+          <h2 class="pub-pane-title" data-i18n="pubStep2">XSL を選ぶ</h2>
+          <p class="pub-pane-hint" data-i18n="pubStep2Hint">表示方式（レイアウト）を 1 つ選びます</p>
+        </div>
+      </div>
+      <ul class="pub-list" id="xslList"></ul>
+    </section>
+
+  </div>
+
+  <div class="error" id="error"></div>
+
+  <!-- Step 3: open the result -->
+  <div class="pub-bar" data-step="open">
+    <div class="pub-pane-head">
+      <span class="pub-pane-num">3</span>
+      <div class="pub-pane-headtext">
+        <h2 class="pub-pane-title" data-i18n="pubStep3">全画面表示で開く</h2>
+        <p class="pub-pane-hint" data-i18n="pubStep3Hint">選んだ XML と XSL を新しいタブで表示します</p>
+      </div>
+    </div>
+    <div class="pub-bar-main">
+      <div class="pub-selection">
+        <span><strong data-i18n="pubSelXml">XML:</strong> <span id="selXml" class="pub-none" data-i18n="pubNone">未選択</span></span>
+        <span><strong data-i18n="pubSelXsl">XSL:</strong> <span id="selXsl" class="pub-none" data-i18n="pubNone">未選択</span></span>
+      </div>
+      <button class="btn-primary" id="pubOpenBtn" data-i18n="pubOpen" disabled>全画面表示で開く</button>
+    </div>
+  </div>
+
+</div>
+
+<script src="js/shared/common.js"></script>
+<script src="js/pages/publisher.js"></script>
+</body>
+</html>
