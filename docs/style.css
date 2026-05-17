@@ -831,6 +831,58 @@ a.pub-open {
 .pub-selection strong { color: #6e6e73; font-weight: 600; margin-right: .35rem; }
 .pub-none { color: #aeaeb2; }
 
+/* ---- "where the metadata comes from" link (under a page subtitle) ---- */
+.meta-link { text-align: center; margin-top: -.3rem; }
+.meta-link a { font-size: .82rem; color: #0071e3; text-decoration: none; }
+.meta-link a:hover { text-decoration: underline; }
+
+/* ---- metadata guide page ---- */
+.meta-section { margin-top: 2.2rem; }
+.meta-section > h2 { font-size: 1.15rem; font-weight: 600; margin-bottom: .35rem; }
+.meta-section > p {
+  font-size: .87rem;
+  color: #6e6e73;
+  line-height: 1.6;
+  margin-bottom: .9rem;
+}
+.meta-table-wrap { overflow-x: auto; }
+.meta-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: .85rem;
+}
+.meta-table th,
+.meta-table td {
+  text-align: left;
+  vertical-align: top;
+  padding: .6rem .7rem;
+  border-bottom: 1px solid #e5e5ea;
+}
+.meta-table thead th {
+  font-size: .76rem;
+  font-weight: 600;
+  color: #86868b;
+  border-bottom: 2px solid #e5e5ea;
+}
+.meta-table td:first-child { font-weight: 600; white-space: nowrap; }
+.meta-table code {
+  font-size: .8rem;
+  background: #f0f0f2;
+  padding: .12rem .35rem;
+  border-radius: 4px;
+  font-family: "SF Mono", Menlo, Consolas, monospace;
+  white-space: nowrap;
+}
+.meta-notes { margin-top: 2.2rem; }
+.meta-notes h2 { font-size: 1.15rem; font-weight: 600; margin-bottom: .6rem; }
+.meta-notes ul { margin: 0; padding-left: 1.2rem; }
+.meta-notes li {
+  font-size: .85rem;
+  color: #4a4a52;
+  line-height: 1.65;
+  margin-bottom: .55rem;
+}
+
 /* ---- footer ---- */
 .site-footer {
   width: 100%;
@@ -917,6 +969,14 @@ a.pub-open {
 .dark a.landing-card:hover { box-shadow: 0 8px 24px rgba(0,0,0,.3); border-color: #64d2ff; }
 .dark .landing-card-ext { background: #232d3e; }
 .dark a.landing-card-ext:hover { background: #2c2c2e; }
+.dark .meta-section > h2,
+.dark .meta-notes h2 { color: #f5f5f7; }
+.dark .meta-section > p { color: #aeaeb2; }
+.dark .meta-table th,
+.dark .meta-table td { border-bottom-color: #3a3a3c; }
+.dark .meta-table thead th { color: #8e8e93; border-bottom-color: #3a3a3c; }
+.dark .meta-table code { background: #3a3a3c; color: #f5f5f7; }
+.dark .meta-notes li { color: #c7c7cc; }
 .dark .landing-card p { color: #aeaeb2; }
 .dark .ext-mark { color: #aeaeb2; }
 .dark .step-tools { border-top-color: #3a3a3c; }

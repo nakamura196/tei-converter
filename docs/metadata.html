@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>メタデータの出典 — TEI Tools</title>
+<meta name="description" content="TEI ギャラリーが表示するタイトル・概要・言語・カテゴリ・ライセンスを、TEI/XML の teiHeader と XSL のコメントのどこから取得しているかの説明。">
+<meta name="keywords" content="TEI, XML, XSL, teiHeader, メタデータ, catalog">
+<link rel="canonical" href="https://tei-converter.pages.dev/metadata.html">
+<!-- OGP -->
+<meta property="og:title" content="メタデータの出典 — TEI Tools">
+<meta property="og:description" content="TEI ギャラリーが表示する情報を、TEI/XML と XSL のどこから取得しているかの説明。">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://tei-converter.pages.dev/metadata.html">
+<meta property="og:site_name" content="TEI Tools">
+<meta property="og:locale" content="ja_JP">
+<meta property="og:image" content="https://tei-converter.pages.dev/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<!-- Twitter Card -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://tei-converter.pages.dev/og-image.png">
+<meta name="twitter:title" content="メタデータの出典 — TEI Tools">
+<meta name="twitter:description" content="TEI ギャラリーが表示する情報を、TEI/XML と XSL のどこから取得しているかの説明。">
+<link rel="icon" href="favicon.ico">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!-- site header · footer: injected by js/shared/common.js → renderChrome() -->
+
+<h1 class="page-title" data-i18n="metaPageTitle">メタデータの出典</h1>
+<p class="subtitle" data-i18n="metaSubtitle">TEI ギャラリーの一覧に並ぶ情報が、ファイルのどこから来ているか</p>
+
+<div class="note-box" data-i18n="metaIntro">
+  TEI ギャラリー（<a href="publisher.html">publisher.html</a>）に並ぶタイトル・概要・言語・カテゴリ・ライセンスは、手入力ではなく TEI/XML と XSL のファイル自身から自動抽出され、catalog.json に書き出されています。抽出は scripts/build-catalog.mjs が行います。
+</div>
+
+<div class="main-content">
+
+  <section class="meta-section">
+    <h2 data-i18n="metaXmlHeading">XML 文書のメタデータ</h2>
+    <p data-i18n="metaXmlIntro">各 XML 文書の teiHeader から、次の要素を取り出します。名前空間プレフィックス（tei: など）は無視されます。</p>
+    <div class="meta-table-wrap">
+      <table class="meta-table">
+        <thead>
+          <tr>
+            <th data-i18n="metaColField">表示項目</th>
+            <th data-i18n="metaColSource">取得元（TEI 要素）</th>
+            <th data-i18n="metaColNote">補足</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td data-i18n="metaFieldTitle">タイトル</td>
+            <td><code>teiHeader › titleStmt › title</code></td>
+            <td data-i18n="metaXmlTitleNote">type 属性付きの title（副題など）は読み飛ばし、最初の本タイトルを採用します。</td>
+          </tr>
+          <tr>
+            <td data-i18n="metaFieldDesc">概要説明</td>
+            <td><code>teiHeader › profileDesc › abstract</code></td>
+            <td data-i18n="metaXmlDescNote">abstract が無い場合は msDesc の summary を使います。</td>
+          </tr>
+          <tr>
+            <td data-i18n="metaFieldLang">言語</td>
+            <td><code>teiHeader › langUsage › language@ident</code></td>
+            <td data-i18n="metaXmlLangNote">language が無い場合は textLang の mainLang 属性を使います。</td>
+          </tr>
+          <tr>
+            <td data-i18n="metaFieldCat">カテゴリ</td>
+            <td><code>teiHeader › textClass › term</code></td>
+            <td data-i18n="metaXmlCatNote">textClass 内の最初の term を採用します。</td>
+          </tr>
+          <tr>
+            <td data-i18n="metaFieldLicense">ライセンス</td>
+            <td><code>teiHeader › publicationStmt › availability › licence</code></td>
+            <td data-i18n="metaXmlLicenseNote">licence が無い場合は availability 内の p、それも無ければ availability の status 属性を使います。</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <section class="meta-section">
+    <h2 data-i18n="metaXslHeading">XSL スタイルシートのメタデータ</h2>
+    <p data-i18n="metaXslIntro">各 XSL ファイルの先頭にある コメントの、次の構造化行から取り出します。</p>
+    <div class="meta-table-wrap">
+      <table class="meta-table">
+        <thead>
+          <tr>
+            <th data-i18n="metaColField">表示項目</th>
+            <th data-i18n="metaColComment">コメント行</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td data-i18n="metaFieldTitle">タイトル</td>
+            <td><code>Title:</code></td>
+          </tr>
+          <tr>
+            <td data-i18n="metaFieldDesc">概要説明</td>
+            <td><code>Description:</code></td>
+          </tr>
+          <tr>
+            <td data-i18n="metaFieldCat">カテゴリ</td>
+            <td><code>Category:</code></td>
+          </tr>
+          <tr>
+            <td data-i18n="metaFieldLicense">ライセンス</td>
+            <td><code>License:</code></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <section class="meta-notes">
+    <h2 data-i18n="metaNotesHeading">その他の挙動</h2>
+    <ul>
+      <li data-i18n="metaNoteRemote">オンライン文書は取得した teiHeader を優先し、欠けた項目は sources.json の fallback で補います。取得に失敗した場合は fallback のみを使います。</li>
+      <li data-i18n="metaNoteScope">「同梱／オンライン／追加分」バッジは、sources.json の登録区分（ファイル同梱か、リモート URL か）と、画面上で一時的に追加したものかを表します。</li>
+      <li data-i18n="metaNoteInput">XSL の「単一 XML／フォルダ」バッジは catalog.json ではなく、common.js の XSL_CATALOG の input 設定に基づきます。</li>
+      <li data-i18n="metaNoteRebuild">catalog.json は生成物です。XML・XSL・sources.json を変更したら npm run catalog で再生成してください。</li>
+    </ul>
+  </section>
+
+</div>
+
+<script src="js/shared/common.js"></script>
+</body>
+</html>
