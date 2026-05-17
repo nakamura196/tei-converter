@@ -832,7 +832,7 @@ a.pub-open {
 .pub-none { color: #aeaeb2; }
 
 /* ---- "where the metadata comes from" link (under a page subtitle) ---- */
-.meta-link { text-align: center; margin-top: -.3rem; }
+.meta-link { text-align: center; margin-top: -.3rem; margin-bottom: 1.5rem; }
 .meta-link a { font-size: .82rem; color: #0071e3; text-decoration: none; }
 .meta-link a:hover { text-decoration: underline; }
 
