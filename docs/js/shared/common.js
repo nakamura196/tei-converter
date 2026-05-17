@@ -270,9 +270,10 @@ const XSL_CATALOG = [
 ];
 
 /* ======== Shared site chrome (header / footer) ========
-   Injected on every page that loads common.js, so the navigation,
-   GitHub link and footer live in exactly one place.
-   To re-enable the XSL gallery, uncomment its <a> line below. */
+   Injected on every page that loads common.js, so the header and footer
+   live in exactly one place. The header carries only the site title and
+   the theme / language / GitHub controls — page navigation is reached
+   from the landing page, not a nav menu. */
 function renderChrome() {
   const githubIcon =
     '<svg width="20" height="20" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true">' +
@@ -280,18 +281,12 @@ function renderChrome() {
     '</svg>';
 
   const header =
-    '<a href="https://github.com/toyo-bunko/tei-tools" target="_blank" rel="noopener" class="github-link" aria-label="View on GitHub">' + githubIcon + '</a>' +
     '<header class="site-header">' +
       '<a href="index.html" class="site-title">TEI Tools</a>' +
       '<nav class="site-nav">' +
-        '<a href="convert.html" data-i18n="modeConvert">DOCX → TEI 変換</a>' +
-        '<a href="https://tei-iiif-editor.vercel.app/ja" target="_blank" rel="noopener" data-i18n="modeEditor">TEI/IIIF エディタ</a>' +
-        '<a href="viewer.html" data-i18n="modeViewer">TEI/XML ビューワ</a>' +
-        // XSL ギャラリーは TEI ギャラリーと機能重複のため一時的に非表示（ファイルは保持）
-        // '<a href="examples.html" data-i18n="modeExamples">XSL ギャラリー</a>' +
-        '<a href="publisher.html" data-i18n="modePublisher">TEI ギャラリー</a>' +
         '<button class="theme-btn" id="themeBtn">🌓 自動</button>' +
         '<button class="lang-btn" id="langBtn" title="Switch to English">EN</button>' +
+        '<a href="https://github.com/toyo-bunko/tei-tools" target="_blank" rel="noopener" class="site-nav-github" aria-label="View on GitHub">' + githubIcon + '</a>' +
       '</nav>' +
     '</header>';
 

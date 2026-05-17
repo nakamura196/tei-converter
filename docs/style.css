@@ -11,29 +11,6 @@ body {
   padding: 0;
 }
 
-/* ---- GitHub link ---- */
-.github-link {
-  position: fixed;
-  bottom: 1.2rem;
-  right: 1.2rem;
-  z-index: 200;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
-  background: #fff;
-  border: 1px solid #d2d2d7;
-  color: #1d1d1f;
-  box-shadow: 0 2px 8px rgba(0,0,0,.1);
-  transition: transform .15s, box-shadow .15s;
-}
-.github-link:hover {
-  transform: scale(1.1);
-  box-shadow: 0 4px 12px rgba(0,0,0,.15);
-}
-
 /* ---- shared header ---- */
 .site-header {
   width: 100%;
@@ -69,6 +46,7 @@ body {
   white-space: nowrap;
 }
 .site-nav a:hover { color: #0071e3; }
+.site-nav-github { display: flex; align-items: center; }
 
 .lang-btn {
   font-size: .7rem;
@@ -923,7 +901,6 @@ a.pub-open {
 .dark {
   background: #1c1c1e; color: #f5f5f7;
 }
-.dark .github-link { background: #2c2c2e; border-color: #48484a; color: #f5f5f7; box-shadow: 0 2px 8px rgba(0,0,0,.3); }
 .dark .site-header { background: #2c2c2e; border-bottom-color: #3a3a3c; }
 .dark .site-title { color: #f5f5f7; }
 .dark .site-title:hover { color: #64d2ff; }
