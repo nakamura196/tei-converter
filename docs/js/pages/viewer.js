@@ -49,10 +49,10 @@ function loadXmlFile(file) {
 
 /* ======== Sample XML ======== */
 document.getElementById('sampleXmlBtn').addEventListener('click', () => {
-  fetch('sample.xml')
+  fetch('xml/tei-guide/tei.xml')
     .then(res => res.text())
     .then(text => {
-      const file = new File([text], 'sample.xml', { type: 'application/xml' });
+      const file = new File([text], 'tei-guide.xml', { type: 'application/xml' });
       loadXmlFile(file);
     })
     .catch(() => showError(t('errConvert')));
