@@ -100,7 +100,7 @@ const I18N = {
     metaXmlHeading:   'XML 文書のメタデータ',
     metaXmlIntro:     '各 XML 文書の teiHeader から、次の要素を取り出します。名前空間プレフィックス（tei: など）は無視されます。',
     metaXslHeading:   'XSL スタイルシートのメタデータ',
-    metaXslIntro:     '各 XSL ファイルの先頭にある コメントの、次の構造化行から取り出します。',
+    metaXslIntro:     '各 XSL ファイル先頭のコメント内にある、次の構造化行から取り出します。',
     metaColField:     '表示項目',
     metaColSource:    '取得元（TEI 要素）',
     metaColNote:      '補足',
