@@ -125,12 +125,45 @@ body {
   padding: 0 1.5rem 2rem;
 }
 
+/* ---- landing process flow ---- */
+/* Desktop: the 3 steps sit side by side. Stacks to one column below 820px
+   (see media query) so phones / small tablets read it top-to-bottom. */
+.main-content:has(.process-flow) { max-width: 1040px; }
+.process-flow {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+  margin-top: 1rem;
+  align-items: start;
+}
+.process-head {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: .6rem;
+  margin-bottom: 1rem;
+}
+.process-num {
+  flex: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 1.9rem;
+  height: 1.9rem;
+  border-radius: 50%;
+  background: #0071e3;
+  color: #fff;
+  font-size: 1rem;
+  font-weight: 600;
+}
+.process-head h2 { font-size: 1.2rem; font-weight: 600; }
+.ext-mark { font-size: .8em; color: #6e6e73; }
+
 /* ---- landing page cards ---- */
 .landing-cards {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
   gap: 1.5rem;
-  margin-top: 1rem;
 }
 .landing-card {
   display: flex;
@@ -145,14 +178,70 @@ body {
   color: inherit;
   transition: transform .15s, box-shadow .15s, border-color .15s;
 }
-.landing-card:hover {
+a.landing-card:hover {
   transform: translateY(-2px);
   box-shadow: 0 8px 24px rgba(0,0,0,.08);
   border-color: #0071e3;
 }
 .landing-card-icon { font-size: 3rem; margin-bottom: 1rem; }
-.landing-card h2 { font-size: 1.1rem; font-weight: 600; margin-bottom: .6rem; }
+.landing-card h3 { font-size: 1.1rem; font-weight: 600; margin-bottom: .6rem; }
 .landing-card p { font-size: .85rem; color: #6e6e73; line-height: 1.5; }
+/* a card that is not itself a link (holds its own links, e.g. TEI Scanner) */
+.landing-card .tool-links { justify-content: center; margin-top: 1rem; }
+/* external destinations (open in a new tab) get a faint blue wash — the
+   site's "link / info" tint (cf. .pub-badge); white cards are this site's
+   own pages. Blue reads as "link out", not "disabled" (which grey implies). */
+.landing-card-ext { background: #eef4ff; }
+a.landing-card-ext:hover { background: #fff; }
+
+/* ---- per-step established tools ---- */
+.step-tools {
+  margin-top: 1.25rem;
+  padding-top: 1.1rem;
+  border-top: 1px dashed #d2d2d7;
+}
+.step-tools-label {
+  font-size: .76rem;
+  font-weight: 600;
+  color: #86868b;
+  margin-bottom: .65rem;
+}
+.tool-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: .7rem;
+}
+.tool-card {
+  display: block;
+  padding: .85rem 1rem;
+  background: #eef4ff;
+  border: 1px solid #e5e5ea;
+  border-radius: 10px;
+  text-decoration: none;
+  color: inherit;
+  transition: background .15s, border-color .15s, box-shadow .15s;
+}
+a.tool-card:hover {
+  background: #fff;
+  border-color: #0071e3;
+  box-shadow: 0 4px 16px rgba(0,0,0,.06);
+}
+.tool-card h3 { font-size: .9rem; font-weight: 600; margin-bottom: .3rem; }
+.tool-card p { font-size: .78rem; color: #6e6e73; line-height: 1.5; }
+/* a tool with more than one destination (e.g. GitHub + App Store) */
+.tool-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: .35rem .9rem;
+  margin-top: .55rem;
+}
+.tool-links a {
+  font-size: .78rem;
+  font-weight: 600;
+  color: #0071e3;
+  text-decoration: none;
+}
+.tool-links a:hover { text-decoration: underline; }
 
 /* ---- drop zone ---- */
 .dropzone {
@@ -432,6 +521,338 @@ button:disabled { opacity: .4; cursor: not-allowed; }
 }
 .tei-preview tei-pb::before { content: "[p. " attr(n) "]"; }
 
+/* ---- examples page: section headings ---- */
+.section-title {
+  font-size: 1.05rem;
+  font-weight: 600;
+  margin: 2rem 0 .9rem;
+}
+.section-title:first-child { margin-top: 0; }
+
+/* ---- examples page: XSL catalog ---- */
+.xsl-catalog {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 1rem;
+}
+.xsl-card {
+  display: flex;
+  flex-direction: column;
+  gap: .55rem;
+  padding: 1.1rem 1.2rem;
+  background: #fff;
+  border: 1px solid #e5e5ea;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: border-color .15s, box-shadow .15s;
+}
+.xsl-card:hover { border-color: #0071e3; }
+.xsl-card.selected {
+  border-color: #0071e3;
+  box-shadow: 0 0 0 2px rgba(0,113,227,.25);
+}
+.xsl-card-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: .5rem;
+}
+.xsl-card-head h3 { font-size: .95rem; font-weight: 600; }
+.xsl-badge {
+  flex: none;
+  font-size: .68rem;
+  font-weight: 500;
+  padding: .15rem .5rem;
+  border-radius: 999px;
+  background: #eef4ff;
+  color: #0071e3;
+  white-space: nowrap;
+}
+.xsl-card-desc {
+  font-size: .82rem;
+  line-height: 1.6;
+  color: #6e6e73;
+  flex: 1;
+}
+.xsl-card-actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: .5rem;
+}
+.xsl-card-actions .btn-primary,
+.xsl-card-actions .btn-secondary {
+  font-size: .78rem;
+  padding: .4rem .9rem;
+}
+.xsl-path {
+  width: 100%;
+  font-size: .7rem;
+  color: #aeaeb2;
+  font-family: "SF Mono", Menlo, Consolas, monospace;
+}
+
+/* anchors styled as buttons (download / open-in-tab) */
+a.btn-primary, a.btn-secondary {
+  display: inline-block;
+  text-decoration: none;
+  border-radius: 10px;
+  padding: .7rem 1.8rem;
+  font-size: .9rem;
+  font-weight: 500;
+}
+.result-actions a.btn-secondary { font-size: .8rem; padding: .45rem 1rem; }
+
+/* ---- examples page: input controls ---- */
+.input-extra {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: .6rem .9rem;
+  margin-top: .8rem;
+}
+.input-extra .file-input { display: none; }
+.input-extra .btn-secondary { font-size: .82rem; padding: .5rem 1rem; }
+.input-hint { font-size: .78rem; color: #86868b; }
+
+/* ---- examples page: result ---- */
+.applied-xsl {
+  align-self: center;
+  margin-right: .3rem;
+  font-size: .8rem;
+  color: #6e6e73;
+}
+.render-frame {
+  width: 100%;
+  min-height: 360px;
+  border: 1px solid #d2d2d7;
+  border-radius: 12px;
+  background: #fff;
+}
+
+/* ---- publisher: two-pane layout ---- */
+/* Wider layout with slimmer side margins, to fit more of both lists. */
+.main-content:has(.publisher) {
+  max-width: none;
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
+
+/* ---- publisher: numbered step head (shared by the two panes and the open bar) ---- */
+.pub-pane-head {
+  display: flex;
+  align-items: flex-start;
+  gap: .6rem;
+  margin-bottom: .85rem;
+}
+.pub-pane-headtext { min-width: 0; }
+.pub-pane-hint {
+  margin-top: .15rem;
+  font-size: .76rem;
+  color: #86868b;
+  line-height: 1.45;
+}
+
+/* number badge in every step head */
+.pub-pane-num {
+  flex: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 1.5rem;
+  height: 1.5rem;
+  border-radius: 50%;
+  background: #0071e3;
+  color: #fff;
+  font-size: .82rem;
+  font-weight: 700;
+}
+
+.publisher {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.25rem;
+}
+.pub-pane {
+  background: #fff;
+  border: 1px solid #e5e5ea;
+  border-radius: 12px;
+  padding: 1.1rem 1.2rem;
+  transition: border-color .15s, box-shadow .15s;
+}
+.pub-pane.active { border-color: #0071e3; box-shadow: 0 0 0 3px rgba(0,113,227,.12); }
+.pub-pane.done .pub-pane-num { background: #1a7f37; }
+.pub-pane-title {
+  display: flex;
+  align-items: baseline;
+  gap: .4rem;
+  font-size: 1rem;
+  font-weight: 600;
+}
+.pane-count { color: #86868b; font-weight: 400; font-size: .85rem; }
+.pub-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: .5rem;
+}
+.pub-item {
+  border: 1px solid #e5e5ea;
+  border-radius: 9px;
+  padding: .6rem .75rem;
+  cursor: pointer;
+  transition: border-color .15s, box-shadow .15s;
+}
+.pub-item:hover { border-color: #0071e3; }
+.pub-item.selected {
+  border-color: #0071e3;
+  box-shadow: 0 0 0 2px rgba(0,113,227,.25);
+}
+.pub-item-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: .5rem;
+}
+.pub-item-title { font-size: .85rem; font-weight: 600; }
+.pub-badge {
+  flex: none;
+  font-size: .66rem;
+  font-weight: 500;
+  padding: .12rem .5rem;
+  border-radius: 999px;
+  background: #eef4ff;
+  color: #0071e3;
+  white-space: nowrap;
+}
+.pub-badge-bundled { background: #e9f7ee; color: #1a7f37; }
+.pub-badge-remote  { background: #fdf0e3; color: #b1560f; }
+.pub-badge-added   { background: #ececef; color: #6e6e73; }
+.pub-item-note {
+  font-size: .76rem;
+  line-height: 1.5;
+  color: #6e6e73;
+  margin-top: .3rem;
+}
+.pub-item-actions {
+  margin-top: .3rem;
+  display: flex;
+  justify-content: flex-end;
+  gap: .5rem;
+}
+a.pub-open {
+  display: inline-flex;
+  align-items: center;
+  gap: .25rem;
+  font-size: .68rem;
+  font-weight: 500;
+  padding: .2rem .5rem;
+  border-radius: 6px;
+  line-height: 1.4;
+  text-decoration: none;
+}
+.pub-open-icon { flex: none; }
+
+/* ---- category / language chips + license line ---- */
+.pub-item-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: .3rem;
+  margin-top: .35rem;
+}
+.pub-cat {
+  font-size: .66rem;
+  padding: .1rem .45rem;
+  border-radius: 999px;
+  background: #eef1f6;
+  color: #4a4a52;
+}
+.pub-lang {
+  font-size: .62rem;
+  font-weight: 600;
+  letter-spacing: .04em;
+  padding: .1rem .4rem;
+  border-radius: 4px;
+  background: #f0f0f2;
+  color: #6e6e73;
+}
+.pub-license {
+  font-size: .68rem;
+  line-height: 1.45;
+  color: #8a8a8f;
+  margin-top: .3rem;
+}
+.pub-license-label { font-weight: 600; color: #6e6e73; }
+.pub-add {
+  margin-top: .9rem;
+  padding-top: .8rem;
+  border-top: 1px solid #e5e5ea;
+}
+.pub-add > summary {
+  font-size: .8rem;
+  font-weight: 600;
+  color: #0071e3;
+  cursor: pointer;
+  list-style: none;
+}
+.pub-add > summary::-webkit-details-marker { display: none; }
+.pub-add > summary::before { content: "＋ "; }
+.pub-add[open] > summary::before { content: "− "; }
+.pub-add-body { margin-top: .7rem; }
+.pub-add-row { display: flex; gap: .5rem; margin-bottom: .5rem; }
+.pub-add-row input {
+  flex: 1;
+  min-width: 0;
+  font-size: .8rem;
+  padding: .45rem .6rem;
+  border: 1px solid #d2d2d7;
+  border-radius: 8px;
+  background: #fff;
+  color: #1d1d1f;
+}
+.pub-add .btn-secondary { font-size: .78rem; padding: .42rem .9rem; }
+
+/* ---- publisher: step 3 — open bar ---- */
+/* Sticks to the viewport bottom so the open button is always reachable. */
+.pub-bar {
+  position: sticky;
+  bottom: 0;
+  z-index: 5;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: .8rem 1.5rem;
+  margin-top: 1.25rem;
+  padding: 1rem 1.2rem;
+  background: #fff;
+  border: 1px solid #e5e5ea;
+  border-radius: 12px;
+  box-shadow: 0 -4px 16px rgba(0,0,0,.07);
+  transition: border-color .15s, box-shadow .15s;
+}
+.pub-bar .pub-pane-head { margin-bottom: 0; }
+.pub-bar.active {
+  border-color: #0071e3;
+  box-shadow: 0 0 0 3px rgba(0,113,227,.12), 0 -4px 16px rgba(0,0,0,.07);
+}
+.pub-bar-main {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: .8rem 1.25rem;
+}
+.pub-selection {
+  display: flex;
+  flex-direction: column;
+  gap: .2rem;
+  font-size: .83rem;
+}
+.pub-selection strong { color: #6e6e73; font-weight: 600; margin-right: .35rem; }
+.pub-none { color: #aeaeb2; }
+
 /* ---- footer ---- */
 .site-footer {
   width: 100%;
@@ -445,6 +866,11 @@ button:disabled { opacity: .4; cursor: not-allowed; }
 .site-footer a { color: #aeaeb2; }
 
 /* ---- responsive ---- */
+/* Stack the 3-step landing flow before it gets cramped (covers phones + small tablets). */
+@media (max-width: 820px) {
+  .process-flow { grid-template-columns: 1fr; gap: 2rem; }
+}
+
 @media (max-width: 600px) {
   .site-header {
     padding: .6rem 1rem;
@@ -481,6 +907,11 @@ button:disabled { opacity: .4; cursor: not-allowed; }
     border-radius: 8px;
   }
 
+  .xsl-catalog { grid-template-columns: 1fr; }
+  .publisher { grid-template-columns: 1fr; }
+  .pub-bar { align-items: flex-start; }
+  .pub-bar-main { width: 100%; justify-content: space-between; }
+
   .tei-preview tei-note:hover > * {
     min-width: 160px;
     max-width: 260px;
@@ -506,8 +937,16 @@ button:disabled { opacity: .4; cursor: not-allowed; }
 .dark .note-box { background: #3a3520; border-color: #6b5c1f; color: #e8d89c; }
 .dark .note-box a { color: #e8d89c; }
 .dark .landing-card { background: #2c2c2e; border-color: #3a3a3c; color: #f5f5f7; }
-.dark .landing-card:hover { box-shadow: 0 8px 24px rgba(0,0,0,.3); border-color: #64d2ff; }
+.dark a.landing-card:hover { box-shadow: 0 8px 24px rgba(0,0,0,.3); border-color: #64d2ff; }
+.dark .landing-card-ext { background: #232d3e; }
+.dark a.landing-card-ext:hover { background: #2c2c2e; }
 .dark .landing-card p { color: #aeaeb2; }
+.dark .ext-mark { color: #aeaeb2; }
+.dark .step-tools { border-top-color: #3a3a3c; }
+.dark .tool-card { background: #232d3e; border-color: #3a3a3c; color: #f5f5f7; }
+.dark a.tool-card:hover { background: #2c2c2e; border-color: #64d2ff; box-shadow: 0 4px 16px rgba(0,0,0,.3); }
+.dark .tool-card p { color: #aeaeb2; }
+.dark .tool-links a { color: #64d2ff; }
 .dark .dropzone { background: #2c2c2e; border-color: #48484a; }
 .dark .dropzone.dragover { border-color: #64d2ff; background: #1a2a3a; }
 .dark .dropzone.has-file { border-color: #30d158; background: #1a2e1a; }
@@ -533,6 +972,46 @@ button:disabled { opacity: .4; cursor: not-allowed; }
 .dark .tei-preview tei-ref { color: #64d2ff; }
 .dark .site-footer { border-top-color: #3a3a3c; color: #636366; }
 .dark .site-footer a { color: #636366; }
+.dark .section-title { color: #f5f5f7; }
+.dark .xsl-card { background: #2c2c2e; border-color: #3a3a3c; }
+.dark .xsl-card:hover { border-color: #64d2ff; }
+.dark .xsl-card.selected { border-color: #64d2ff; box-shadow: 0 0 0 2px rgba(100,210,255,.3); }
+.dark .xsl-card-head h3 { color: #f5f5f7; }
+.dark .xsl-badge { background: #1a2a3a; color: #64d2ff; }
+.dark .xsl-card-desc { color: #aeaeb2; }
+.dark .xsl-path { color: #636366; }
+.dark .input-hint { color: #8e8e93; }
+.dark .applied-xsl { color: #aeaeb2; }
+.dark .render-frame { background: #fff; border-color: #48484a; }
+.dark .pub-pane,
+.dark .pub-bar { background: #2c2c2e; border-color: #3a3a3c; }
+.dark .pub-pane-title { color: #f5f5f7; }
+.dark .pub-item { border-color: #3a3a3c; }
+.dark .pub-item:hover { border-color: #64d2ff; }
+.dark .pub-item.selected { border-color: #64d2ff; box-shadow: 0 0 0 2px rgba(100,210,255,.3); }
+.dark .pub-item-title { color: #f5f5f7; }
+.dark .pub-item-note { color: #aeaeb2; }
+.dark .pub-badge { background: #1a2a3a; color: #64d2ff; }
+.dark .pub-badge-bundled { background: #14301f; color: #5fd38a; }
+.dark .pub-badge-remote  { background: #3a2a14; color: #e0a060; }
+.dark .pub-badge-added   { background: #3a3a3c; color: #aeaeb2; }
+.dark .pub-cat { background: #2a2f3a; color: #b9c0cc; }
+.dark .pub-lang { background: #3a3a3c; color: #aeaeb2; }
+.dark .pub-license { color: #7a7a7f; }
+.dark .pub-license-label { color: #aeaeb2; }
+.dark .pub-add { border-top-color: #3a3a3c; }
+.dark .pub-add > summary { color: #64d2ff; }
+.dark .pub-add-row input { background: #1c1c1e; border-color: #48484a; color: #f5f5f7; }
+.dark .pub-selection strong { color: #aeaeb2; }
+.dark .pub-bar { box-shadow: 0 -4px 16px rgba(0,0,0,.4); }
+.dark .pub-pane-hint { color: #8e8e93; }
+.dark .pub-pane.active { border-color: #64d2ff; box-shadow: 0 0 0 3px rgba(100,210,255,.18); }
+.dark .pub-pane.done .pub-pane-num { background: #1a7f37; }
+.dark .pub-bar.active {
+  border-color: #64d2ff;
+  box-shadow: 0 0 0 3px rgba(100,210,255,.18), 0 -4px 16px rgba(0,0,0,.4);
+}
+.dark .pub-pane-num { background: #0a84ff; }
 
 /* ---- theme toggle button ---- */
 .theme-btn {
