@@ -13,9 +13,11 @@
     reading:      'xsl/tei-reading.xsl',
     notes:        'xsl/tei-notes.xsl',
     bibliography: 'xsl/tei-bibliography.xsl',
+    analysis:     'xsl/tei-analysis.xsl',
     ocr:          'xsl/tei-ocr-facsimile.xsl',
     vellum:       'xsl/tei-vellum.xsl',
     urenja:       'xsl/tei-urenja.xsl',
+    manchu:       'xsl/tei-manchu.xsl',
   };
 
   var statusEl = document.getElementById('status');

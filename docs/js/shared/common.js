@@ -288,6 +288,17 @@ const XSL_CATALOG = [
     },
   },
   {
+    id: 'analysis',
+    xsl: 'xsl/tei-analysis.xsl',
+    input: 'file',
+    sample: { kind: 'file', path: 'xml/tei-guide/tei.xml' },
+    title: { ja: 'タグ統計・可視化', en: 'Tag statistics' },
+    desc: {
+      ja: '全要素・全属性を名前ごとに集計し、出現頻度を棒グラフで可視化します。どんな TEI/XML にも適用できる構造分析ビューです。',
+      en: 'Counts every element and attribute by name and visualizes the frequencies as bar charts — a structure-analysis view for any TEI/XML.',
+    },
+  },
+  {
     id: 'ocr',
     xsl: 'xsl/tei-ocr-facsimile.xsl',
     input: 'folder',
@@ -319,6 +330,17 @@ const XSL_CATALOG = [
     desc: {
       ja: '酉蓮社プロジェクトのスタイルシート。NDL古典籍OCR で生成した TEI を、ページごとに本文翻刻と OpenSeadragon の画像（拡大縮小・行 zone）を並べ、ページャーで送って表示します。',
       en: 'The Yūrensha project stylesheet: a paged view of NDL classical-book OCR TEI, each page showing the transcription beside an OpenSeadragon image (zoom/pan, line zones).',
+    },
+  },
+  {
+    id: 'manchu',
+    xsl: 'xsl/tei-manchu.xsl',
+    input: 'file',
+    sample: { kind: 'folder', dir: 'xml/manchu', xml: 'tei.xml' },
+    title: { ja: '清語老乞大 縦書きビュー', en: 'Cing gisun-i Lao Kida vertical view' },
+    desc: {
+      ja: '朝鮮司譯院刊『清語老乞大』専用のスタイルシート。影印画像と、満州文字（縦書き）＋ハングル音注＋割書諺解を再現した HTML 版面を左右に並べて表示します。',
+      en: 'The "Cing gisun-i Lao Kida" project stylesheet: the facsimile image beside an HTML reproduction of the vertical Manchu script with Hangul phonetic glosses and the interlinear Korean translation.',
     },
   },
 ];

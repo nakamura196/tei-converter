@@ -4,6 +4,7 @@
     { "id": "tei-guide",  "scope": "bundled", "path": "xml/tei-guide/tei.xml" },
     { "id": "ocr-sample", "scope": "bundled", "path": "xml/ocr-sample/tei.xml" },
     { "id": "vellum",     "scope": "bundled", "path": "xml/vellum/tei.xml" },
+    { "id": "manchu",     "scope": "bundled", "path": "xml/manchu/tei.xml" },
     {
       "id": "urenja-001-01",
       "scope": "remote",

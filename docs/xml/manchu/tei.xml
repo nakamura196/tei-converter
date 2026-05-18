@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<TEI xmlns="http://www.tei-c.org/ns/1.0" xml:id="laoqida-genpon" xml:lang="mnc">
+  <teiHeader>
+    <fileDesc>
+      <titleStmt>
+        <title xml:lang="ja">清語老乞大 — 原本レイアウト可視化用 最小データ（巻之一・第一葉表）</title>
+        <title xml:lang="en">Cing gisun-i Lao Kida — minimal TEI for facsimile-layout visualization (vol. 1, fol. 1a)</title>
+      </titleStmt>
+      <publicationStmt>
+        <publisher xml:lang="ja">作業中（GitHub Pages 公開予定）</publisher>
+        <date when="2026-05-09"/>
+        <availability status="free">
+          <licence target="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</licence>
+        </availability>
+      </publicationStmt>
+      <sourceDesc>
+        <bibl>
+          <title xml:lang="zh-Hant">清語老乞大</title>
+          <pubPlace>朝鮮 司譯院</pubPlace>
+          <date notBefore="1703" notAfter="1765">康熙〜乾隆年間</date>
+        </bibl>
+      </sourceDesc>
+    </fileDesc>
+    <encodingDesc>
+      <projectDesc>
+        <p xml:lang="ja">縦書き満州文字（上→下）・各語右側のハングル音注・割書（warigaki）形式の中世韓国語諺解、という版面構造の可視化検証用に、最小限の情報のみを符号化する。<gi>cb</gi> で印刷上の段（列）を区切り、各語は <gi>w</gi> 内に満州文字本体を保持し、<gi>note</gi>（<att>type</att>=<val>phon</val> <att>place</att>=<val>right</val>）として右添えハングル音注を、文末に <gi>note</gi>（<att>type</att>=<val>warigaki</val>）として割書韓訳を併置する。</p>
+      </projectDesc>
+    </encodingDesc>
+    <profileDesc>
+      <langUsage>
+        <language ident="mnc">満州語（満州文字）/ Manchu (Manchu script)</language>
+        <language ident="ko">中世韓国語（ハングル音注・諺解）/ Middle Korean (Hangul gloss and translation)</language>
+      </langUsage>
+      <textClass>
+        <keywords>
+          <term xml:lang="ja">満州語会話教本 / Manchu-language phrasebook</term>
+        </keywords>
+      </textClass>
+      <abstract>
+        <p xml:lang="ja">朝鮮司譯院刊『清語老乞大』巻之一・第一葉表の TEI 符号化。満州文字の縦書き版面・各語右側のハングル音注・割書形式の中世韓国語諺解という版面構造を可視化検証するための最小データです。/ A minimal TEI encoding of the first leaf of the "Cing gisun-i Lao Kida" (Korean Saiyŏgwŏn edition): the vertical Manchu script, the Hangul phonetic glosses beside each word, and the interlinear Korean translation.</p>
+      </abstract>
+    </profileDesc>
+  </teiHeader>
+
+  <facsimile>
+    <surface xml:id="f1a">
+      <graphic url="laoqida.jpg"/>
+    </surface>
+  </facsimile>
+
+  <text type="facsimile-layout">
+    <body>
+      <head xml:lang="zh-Hant">清語老乞大　卷之一</head>
+      <pb n="1a" facs="#f1a"/>
+      <div type="dialogue">
+      <ab>
+
+      <!-- 列1（最右列） -->
+      <cb n="1"/>
+      <s n="s01">
+        <w xml:lang="mnc-Mong">ᠠᠮᠪᠠ<note type="phon" place="marginRight" xml:lang="mnc-Kore">암바</note></w>
+        <w xml:lang="mnc-Mong">ᠠᡤᡝ<note type="phon" place="marginRight" xml:lang="mnc-Kore">아거</note></w>
+        <w xml:lang="mnc-Mong">ᠰᡳ<note type="phon" place="marginRight" xml:lang="mnc-Kore">시</note></w>
+        <w xml:lang="mnc-Mong">ᠠᡳᠪᡳᠴᡳ<note type="phon" place="marginRight" xml:lang="mnc-Kore">애버치</note></w>
+        <w xml:lang="mnc-Mong">ᠵᡳᡥᡝ<note type="phon" place="marginRight" xml:lang="mnc-Kore">지허</note></w>
+        <note type="warigaki" xml:lang="ko">큰 형아 네 어<lb/>디로셔 온다</note>
+      </s>
+
+      <s n="s02">
+        <w xml:lang="mnc-Mong">ᠪᡳ<note type="phon" place="marginRight" xml:lang="mnc-Kore">비</note></w>
+        <!-- 列2 -->
+        <cb n="2"/>
+        <w xml:lang="mnc-Mong">ᠴᠣᠣᡥᡳᠶᠠᠨ<note type="phon" place="marginRight" xml:lang="mnc-Kore">챠오한</note></w>
+        <w xml:lang="mnc-Mong">ᠸᠠᠩ<note type="phon" place="marginRight" xml:lang="mnc-Kore">왕</note></w>
+        <w xml:lang="mnc-Mong">ᡤᡳᠩ<note type="phon" place="marginRight" xml:lang="mnc-Kore">깅</note></w>
+        <w xml:lang="mnc-Mong">ᠴᡳ<note type="phon" place="marginRight" xml:lang="mnc-Kore">치</note></w>
+        <w xml:lang="mnc-Mong">ᠵᡳᡥᡝ<note type="phon" place="marginRight" xml:lang="mnc-Kore">지허</note></w>
+        <note type="warigaki" xml:lang="ko">내 朝鮮 王京으<lb/>로셔 왓노라</note>
+      </s>
+
+      <s n="s03">
+        <w xml:lang="mnc-Mong">ᡨᡝ<note type="phon" place="marginRight" xml:lang="mnc-Kore">터</note></w>
+        <!-- 列3 -->
+        <cb n="3"/>
+        <w xml:lang="mnc-Mong">ᠠᠪᠰᡳ<note type="phon" place="marginRight" xml:lang="mnc-Kore">압시</note></w>
+        <w xml:lang="mnc-Mong">ᡤᡝᠨᡝᠮᠪᡳ<note type="phon" place="marginRight" xml:lang="mnc-Kore">거넘비</note></w>
+        <note type="warigaki" xml:lang="ko">이제 어듸<lb/>로 가는다</note>
+      </s>
+
+      <s n="s04">
+        <w xml:lang="mnc-Mong">ᠪᡳ<note type="phon" place="marginRight" xml:lang="mnc-Kore">비</note></w>
+        <w xml:lang="mnc-Mong">ᡤᡝᠮᡠᠨ<note type="phon" place="marginRight" xml:lang="mnc-Kore">거문</note></w>
+        <w xml:lang="mnc-Mong">ᡥᡝᠴᡝᠨ<note type="phon" place="marginRight" xml:lang="mnc-Kore">허쳔</note></w>
+        <w xml:lang="mnc-Mong">ᡳ<note type="phon" place="marginRight" xml:lang="mnc-Kore">이</note></w>
+        <w xml:lang="mnc-Mong">ᠪᠠᡵᡠ<note type="phon" place="marginRight" xml:lang="mnc-Kore">바루</note></w>
+        <!-- 列4 -->
+        <cb n="4"/>
+        <w xml:lang="mnc-Mong">ᡤᡝᠨᡝᠮᠪᡳ<note type="phon" place="marginRight" xml:lang="mnc-Kore">거넘비</note></w>
+        <note type="warigaki" xml:lang="ko">내 皇城으로<lb/>向하여 가노라</note>
+      </s>
+
+      <s n="s05">
+        <w xml:lang="mnc-Mong">ᠰᡳ<note type="phon" place="marginRight" xml:lang="mnc-Kore">시</note></w>
+        <w xml:lang="mnc-Mong">ᠠᡨᠠᠩᡤᡳ<note type="phon" place="marginRight" xml:lang="mnc-Kore">아탕기</note></w>
+        <w xml:lang="mnc-Mong">ᠸᠠᠩ<note type="phon" place="marginRight" xml:lang="mnc-Kore">왕</note></w>
+        <w xml:lang="mnc-Mong">ᡤᡳᠩ<note type="phon" place="marginRight" xml:lang="mnc-Kore">깅</note></w>
+        <w xml:lang="mnc-Mong">ᠴᡳ<note type="phon" place="marginRight" xml:lang="mnc-Kore">치</note></w>
+        <!-- 列5 -->
+        <cb n="5"/>
+        <w xml:lang="mnc-Mong">ᠵᡠᡵᠠᡴᠠ<note type="phon" place="marginRight" xml:lang="mnc-Kore">쥬라카</note></w>
+        <note type="warigaki" xml:lang="ko">네 언제 王京<lb/>에셔 낫노다</note>
+      </s>
+
+      <s n="s06">
+        <!-- s06 の諺解は本葉に印刷されておらず次葉に続くため、ここでは満州文字＋音注のみ -->
+        <w xml:lang="mnc-Mong">ᠪᡳ<note type="phon" place="marginRight" xml:lang="mnc-Kore">비</note></w>
+        <w xml:lang="mnc-Mong">ᡝᡵᡝ<note type="phon" place="marginRight" xml:lang="mnc-Kore">어러</note></w>
+        <w xml:lang="mnc-Mong">ᠪᡳᠶᠠᡳ<note type="phon" place="marginRight" xml:lang="mnc-Kore">뱌</note></w>
+        <w xml:lang="mnc-Mong">ᡳᠴᡝ<note type="phon" place="marginRight" xml:lang="mnc-Kore">이쳐</note></w>
+        <w xml:lang="mnc-Mong">ᡩᡝ<note type="phon" place="marginRight" xml:lang="mnc-Kore">더</note></w>
+        <w xml:lang="mnc-Mong">ᠵᡠᡵᠠᡴᠠ<note type="phon" place="marginRight" xml:lang="mnc-Kore">쥬라카</note></w>
+      </s>
+      </ab>
+      </div>
+    </body>
+  </text>
+</TEI>

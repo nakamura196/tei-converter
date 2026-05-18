@@ -1,5 +1,5 @@
 {
-  "generated": "2026-05-16T23:41:50.916Z",
+  "generated": "2026-05-18T13:56:02.162Z",
   "xml": [
     {
       "id": "tei-guide",
@@ -40,6 +40,19 @@
       "license": "Available for research purposes"
     },
     {
+      "id": "manchu",
+      "scope": "bundled",
+      "url": "xml/manchu/tei.xml",
+      "title": "清語老乞大 — 原本レイアウト可視化用 最小データ（巻之一・第一葉表）",
+      "description": "朝鮮司譯院刊『清語老乞大』巻之一・第一葉表の TEI 符号化。満州文字の縦書き版面・各語右側のハングル音注・割書形式の中世韓国語諺解という版面構造を可視化検証するための最小データです。/ A minimal TEI encoding of the first leaf of the \"Cing gisun-i Lao Kida\" (Korean Saiyŏgwŏn edition): the vertical Manchu script, the Hangul phonetic glosses beside each word, and the interlinear Korean translation.",
+      "languages": [
+        "mnc",
+        "ko"
+      ],
+      "category": "満州語会話教本 / Manchu-language phrasebook",
+      "license": "CC BY 4.0"
+    },
+    {
       "id": "urenja-001-01",
       "scope": "remote",
       "url": "https://u-renja.toyobunko-lab.jp/api/dts/document?resource=https://u-renja.toyobunko-lab.jp/api/iiif/2/001-01/manifest",
@@ -54,10 +67,24 @@
   ],
   "xsl": [
     {
+      "url": "xsl/tei-analysis.xsl",
+      "title": "Tag statistics / タグ統計・可視化",
+      "description": "文書中の全要素・全属性を名前ごとに集計し、出現頻度を棒グラフ（HTML/CSS のみ）で可視化します。どんな TEI/XML にも適用できる構造分析ビューです。/ Counts every element and attribute by name and visualizes the frequencies as bar charts (pure HTML/CSS). A structure-analysis view that works with any TEI/XML.",
+      "category": "汎用 / General-purpose",
+      "license": "自由に利用・改変できます（XSLT 1.0）。/ Free to use and adapt (XSLT 1.0)."
+    },
+    {
       "url": "xsl/tei-bibliography.xsl",
       "title": "Bibliography table / 書誌情報テーブル",
       "description": "teiHeader からタイトル・著者・出版情報・改訂履歴などのメタデータを抽出し、表にまとめます。/ Pulls title, author, publication details and revision history out of the teiHeader.",
       "category": "汎用 / General-purpose",
+      "license": "自由に利用・改変できます（XSLT 1.0）。/ Free to use and adapt (XSLT 1.0)."
+    },
+    {
+      "url": "xsl/tei-manchu.xsl",
+      "title": "清語老乞大 縦書きビュー / Cing gisun-i Lao Kida vertical view",
+      "description": "朝鮮司譯院刊『清語老乞大』巻之一・第一葉表の TEI 専用。影印画像と、満州文字（縦書き）＋ハングル音注＋割書諺解を再現した HTML 版面を左右に並べて表示します。/ Dedicated to the \"Cing gisun-i Lao Kida\" (Korean Saiyŏgwŏn edition, vol. 1, fol. 1a): the facsimile image beside an HTML reproduction of the vertical Manchu script with Hangul phonetic glosses and the interlinear Korean translation.",
+      "category": "プロジェクト専用 / Project-specific",
       "license": "自由に利用・改変できます（XSLT 1.0）。/ Free to use and adapt (XSLT 1.0)."
     },
     {
