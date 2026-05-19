@@ -10,7 +10,7 @@ TEI Tools: a static, no-build-step browser app with four features:
 3. **XSL Gallery** — a catalog of downloadable, standalone XSLT 1.0 stylesheets, each paired with a bundled sample; applies a chosen XSL to a sample, an uploaded TEI/XML file, or an uploaded OCR result folder
 4. **TEI Gallery** — a two-pane launcher: pick an XML document (left) and an XSL stylesheet (right), then open that combination full-screen in `view.html` (page `publisher.html`; renamed from "TEI Publisher" to avoid clashing with the e-editiones product)
 
-Deployed to Cloudflare Pages at https://tei-converter.pages.dev/.
+Deployed to GitHub Pages at https://toyo-bunko.github.io/tei-tools/ — published automatically from the `/docs` folder of the `main` branch.
 
 ## Development
 
