@@ -17,19 +17,30 @@
 <meta property="og:image" content="https://toyo-bunko.github.io/tei-tools/og-image.png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="TEI Tools — TEI/XML のための変換・可視化ツール">
 <!-- Twitter Card -->
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:image" content="https://toyo-bunko.github.io/tei-tools/og-image.png">
+<meta name="twitter:image:alt" content="TEI Tools — TEI/XML のための変換・可視化ツール">
 <meta name="twitter:title" content="TEI Tools — TEI/XML のための変換・可視化ツール">
 <meta name="twitter:description" content="DOCX から TEI/XML への変換や、TEI/XML ファイルの可視化を行うブラウザツール。">
 <link rel="icon" href="favicon.ico">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;600;700&family=Noto+Serif+JP:wght@400;500;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
 <!-- GitHub link · site header · footer: injected by js/shared/common.js → renderChrome() -->
 
-<p class="subtitle" data-i18n="landingSubtitle">作成・編集・公開でたどる TEI/XML のワークフロー</p>
+<section class="hero">
+  <div class="hero-inner">
+    <h1 class="hero-title">TEI Tools</h1>
+    <p class="hero-desc" data-i18n="landingSubtitle">作成・編集・公開でたどる TEI/XML のワークフロー</p>
+    <p class="hero-credit" data-i18n="landingCredit">2026年2月28日開催の東洋文庫研究データベース会議での議論などを受けて作成したツールです。</p>
+  </div>
+</section>
 
 <div class="main-content">
   <div class="process-flow">
@@ -131,6 +142,20 @@
     </section>
 
   </div>
+
+  <section class="news-section">
+    <h2 class="news-title" data-i18n="newsTitle">お知らせ</h2>
+    <ul class="news-list">
+      <li class="news-item">
+        <time class="news-date" datetime="2026-05-19">2026.05.19</time>
+        <span class="news-text" data-i18n="news20260519">TEI ギャラリーなどの機能を追加しました。</span>
+      </li>
+      <li class="news-item">
+        <time class="news-date" datetime="2026-04-08">2026.04.08</time>
+        <span class="news-text" data-i18n="news20260408">サイトを公開しました。</span>
+      </li>
+    </ul>
+  </section>
 </div>
 
 <script src="js/shared/common.js"></script>

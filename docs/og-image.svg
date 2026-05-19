@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="0.45" y2="1">
+      <stop offset="0" stop-color="#1a2a3a"/>
+      <stop offset="0.5" stop-color="#2c3e50"/>
+      <stop offset="1" stop-color="#3d566e"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="630" fill="url(#bg)"/>
+  <rect width="1200" height="8" fill="#8b4513"/>
+  <text x="1190" y="560" text-anchor="end" font-family="'Hiragino Sans','Noto Sans JP',sans-serif" font-size="300" font-weight="700" fill="#ffffff" fill-opacity="0.045">&lt;/&gt;</text>
+  <text x="96" y="272" font-family="'Hiragino Mincho ProN','Yu Mincho',serif" font-size="112" font-weight="700" fill="#ffffff">TEI Tools</text>
+  <rect x="102" y="304" width="224" height="6" fill="#d49a63"/>
+  <text x="102" y="396" font-family="'Hiragino Sans','Noto Sans JP',sans-serif" font-size="40" fill="#ffffff" fill-opacity="0.86">作成・編集・公開でたどる TEI/XML のワークフロー</text>
+  <text x="102" y="474" font-family="'Hiragino Sans','Noto Sans JP',sans-serif" font-size="29" letter-spacing="2" fill="#d49a63">DOCX 変換 ・ TEI/XML ビューワ ・ XSL / TEI ギャラリー</text>
+  <text x="102" y="566" font-family="'Hiragino Sans','Noto Sans JP',sans-serif" font-size="27" fill="#ffffff" fill-opacity="0.5">東洋文庫 — toyo-bunko.github.io/tei-tools</text>
+</svg>
